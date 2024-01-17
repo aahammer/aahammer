@@ -3,49 +3,37 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
+<BaseLayout title = "Toolbox" sideBarActiveItemID="toolbox">
   <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5">Operations Research with PYOMO</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    title="From Concrete to Abstract Model in PYOMO"
+    img="/howto/from-concrete-to-abstract-model-in-pyomo.webp"
+    desc="How to solve a simple problem with a concrete pyomo and translate it into an abstract model."
+    url="https://colab.research.google.com/drive/1nbWywcn3S2QAiGMICRmly4cjzSrAExBb?usp=sharing"
+    badge="PYOMO"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="PYOMO and Google Colab"
+    img="/howto/pyomo-and-google-colab.webp"
+    desc="How to use pyomo inside of google colab notebooks efficiently."
+    url="https://colab.research.google.com/drive/1CAtflhRN0oKZoSDID4yoL2vl5AYMKNin?usp=sharing"
+    badge="PYOMO"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Probabilistic Modelling with PYMC</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    title="A&B Testing in PYMC"
+    img="/howto/a-b-testing-in-pymc.webp"
+    desc="How to do multivariate A&B Testing in PYMC."
+    url="https://colab.research.google.com/drive/1hLE8WkkoDukm5lftmgNhfFFut7a-iTvq?usp=sharing"
+    badge="PYMC"
   />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+
 </BaseLayout>

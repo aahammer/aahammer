@@ -4,59 +4,59 @@ import HorizontalCard from "../components/HorizontalCard.astro";
 import { getCollection } from "astro:content";
 import createSlug from "../lib/createSlug"
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+// const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const last_posts = posts.slice(0, 3);
+// const last_posts = posts.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
   <div class="pb-12 mt-5">
     <div class="text-xl py-1">Hey there 👋</div>
     <div class="text-5xl font-bold">I'm Andreas Adlichhammer</div>
-    <div class="text-3xl py-3 font-bold">Decision Scientist and Product Manager</div>
+    <div class="text-3xl py-3 font-bold">Data Practitioner with a knack for decision problems</div>
     <div class="py-2">
       <text class="text-lg">
-        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
-        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
-        it useful!
+        This is my Personal Toolbox Collection to solve decision problems with data. <br/>
+        I focus on Probabilistic Programming with PYMC and Operations Research with PYOMO.
       </text>
     </div>
     <div class="mt-8">
-      <a class="btn" href="https://twitter.com/" target="_blank"> Let's connect!</a>
+      <a class="btn" href="https://www.linkedin.com/in/andreas-a-431a9413a/" target="_blank"> Let's connect on LinkedIn!</a>
       <a href="https://github.com/aahammer" target="_blank" class="btn btn-outline ml-5">
-        Get This template
+        Visit me on Github
       </a>
     </div>
   </div>
 
   <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+    <div class="text-3xl w-full font-bold mb-2">My last toolbox entries {"</>"}</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    title="From Concrete to Abstract Model in PYOMO"
+    img="/howto/from-concrete-to-abstract-model-in-pyomo.webp"
+    desc="How to solve a simple problem with a concrete pyomo and translate it into an abstract model."
+    url="https://colab.research.google.com/drive/1nbWywcn3S2QAiGMICRmly4cjzSrAExBb?usp=sharing"
+    badge="PYOMO"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="PYOMO and Google Colab"
+    img="/howto/pyomo-and-google-colab.webp"
+    desc="How to use pyomo inside of google colab notebooks efficiently."
+    url="https://colab.research.google.com/drive/1CAtflhRN0oKZoSDID4yoL2vl5AYMKNin?usp=sharing"
+    badge="PYOMO"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
+    title="A&B Testing in PYMC"
+    img="/howto/a-b-testing-in-pymc.webp"
+    desc="How to do multivariate A&B Testing in PYMC."
+    url="https://colab.research.google.com/drive/1hLE8WkkoDukm5lftmgNhfFFut7a-iTvq?usp=sharing"
+    badge="PYMC"
   />
 
-  <div>
+  <!--div>
     <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
   </div>
 
@@ -75,4 +75,5 @@ const last_posts = posts.slice(0, 3);
       </>
     ))
   }
+-->
 </BaseLayout>
