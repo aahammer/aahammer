@@ -2,13 +2,13 @@
 layout: "../../layouts/PostLayout.astro"
 ---
 
-Let's create a tailored mixed marketing model that matches the performance of the official PYMC Marketing Solution, as demonstrated in the [MMM Example Notebook](https://www.pymc-marketing.io/en/stable/notebooks/mmm/mmm_example.htm).
+Let's create a tailored mixed marketing model that matches the performance of the official PYMC Marketing Solution, as demonstrated in the official [MMM Example Notebook](https://www.pymc-marketing.io/en/stable/notebooks/mmm/mmm_example.html).
 
-> # I developed a custom Mixed Marketing Model that is comparable to a professional Solution
+# I developed a custom Mixed Marketing Model that is comparable to a professional Solution
 
-*While conducting a comparative analysis, I identified an instability in the official PYMC Marketing Solution's MMM Example Notebook. This instability, characterized by non-identifiable parameters, could lead to significantly overestimated channel contribution factors, posing a risk in marketing analysis.*
+ *While conducting a comparative analysis, I identified an instability in the official PYMC Marketing Solution's MMM Example Notebook. This instability, characterized by non-identifiable parameters, could lead to significantly overestimated channel contribution factors, posing a risk in marketing analysis.*
 
-*By the end of this project story, you'll not only learn how to create custom components for channel adstock, saturation, and seasonality effects in mixed marketing models, but you'll also gain insights into potential model pitfalls.*
+*By the end of this project story, you'll not only learn how to create custom components for channel adstock, saturation, and seasonality effects in > mixed marketing models, but you'll also gain insights into potential model pitfalls.*
 
 ----
 
@@ -323,8 +323,22 @@ I hope this project story helps you with your own challenges in probabilistic mo
 
 
 # Resources
- • all noteboosk
- • mmm notebook again
- • pymc marketing soluiotn
- • fabacebook prophet and faceobook prophet paper
- • general mmmm topics?
+## Colab Notebooks
+
+- [Main Project Notebook](https://colab.research.google.com/drive/1Z8XW-CXhFTlKekWu_Pi7ghVGIaPHEvWb?usp=sharing)
+
+- [Preparation Notebook Saturated Adstock](https://colab.research.google.com/drive/1V1PWkXjbeUeStqjz2qXadYXuo1FlfK83?usp=sharing)
+- [Preparation Notebook Seasonality](https://colab.research.google.com/drive/1eCIJAQtPcP9CHLa0DohMUnl8gwAbpIKz?usp=sharing)
+
+## PYMC & PYMC Marketing Solution
+
+- [PYMC Probabilistic Programming](https://www.pymc.io/welcome.html)
+- [PYMC Marketing Solution](https://www.pymc-marketing.io/en/stable/)
+- [PYMC Mixed Media Model Example Notebook](https://www.pymc-marketing.io/en/stable/notebooks/mmm/mmm_example.html)
+- [Bolt using PYMC Marketing Solution](https://bolt.eu/en/blog/budgeting-with-bayesian-models-pymc-marketing/)
+
+
+## Further Articles
+- [A Beginners Guide to Marketing Mixed Models @ measured.com](https://www.measured.com/blog/the-beginners-guide-to-marketing-mix-modeling-mmm/)
+- [Facebook Prophet Forecastng](https://facebook.github.io/prophet/)
+- [Facebook Prophet Paper - Forecasting at Scale](https://peerj.com/preprints/3190.pdf)
