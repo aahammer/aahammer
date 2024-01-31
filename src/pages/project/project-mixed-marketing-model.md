@@ -1,16 +1,22 @@
 ---
-layout: "../../layouts/PostLayout.astro"
+layout: "../../layouts/ProjectLayout.astro"
+title: "Mixed Marketing Model with Vanilla PYMC"
 ---
+
 
 Let's create a tailored mixed marketing model that matches the performance of the official PYMC Marketing Solution, as demonstrated in the official [MMM Example Notebook](https://www.pymc-marketing.io/en/stable/notebooks/mmm/mmm_example.html).
 
-# I developed a custom Mixed Marketing Model that is comparable to a professional Solution
+![Project Mixed Marketing Models](../../../public/project/project_mixed_marketing_model.webp)
 
- *While conducting a comparative analysis, I identified an instability in the official PYMC Marketing Solution's MMM Example Notebook. This instability, characterized by non-identifiable parameters, could lead to significantly overestimated channel contribution factors, posing a risk in marketing analysis.*
 
-*By the end of this project story, you'll not only learn how to create custom components for channel adstock, saturation, and seasonality effects in > mixed marketing models, but you'll also gain insights into potential model pitfalls.*
+[comment]: <> (# I developed a custom Mixed Marketing Model that is comparable to a professional Solution)
 
-----
+*By the end of this project story, you'll not only learn how to create custom components for channel adstock, saturation, and seasonality effects in mixed marketing models, but you'll also gain insights into potential model pitfalls.*
+
+## *Accompanying Colab Jupyter Notebook*
+*I have compiled all the essential code in a [Comprehensive Project Notebook](https://colab.research.google.com/drive/1Z8XW-CXhFTlKekWu_Pi7ghVGIaPHEvWb?usp=sharing), covering everything from test data generation to the implementation of our components and models. This notebook facilitates a direct comparison between our solution and the PYMC example. Please note that the variable names in the notebook align with those in the PYMC MMM Example Notebook and not with the names we use here. This makes it easier to compare both solutions   .*
+
+***
 
 ## About Mixed Marketing Solutions
 
@@ -24,25 +30,25 @@ PYMC is a powerful marketing analytics tool, developed by top professionals in t
 
 # Table of Contents
 
-- [Why make it yourself if there is a Solution?](#why-make-it-yourself-if-there-is-a-solution)
-- [What Model Aspects do we Create?](#what-model-aspects-do-we-create)
-    - [Model Parts for the Media Channel Impact](#model-parts-for-the-media-channel-impact)
-    - [Model Parts for Modeling the rest of the world](#model-parts-for-modeling-the-rest-of-the-world)
-- [How to implement the four major model aspects](#how-to-implement-the-four-major-model-aspects)
-    - [1. Create the Adstock with Convolution](#create-the-adstock-with-convolution)
-    - [2. Saturate with a Simple Logarithmic Formula](#saturate-with-a-simple-logarithmic-formula)
-    - [3. Build Seasonality with Fourier Decomposition](#build-seasonality-with-fourier-decomposition])
-    - [4. Events and Trend as weighted control variables](#events-and-trend-as-weighted-control-variables)
-- [Let's plug everything together: The final model](#lets-plug-everything-together-the-final-model)
-- [How does our solution compare to the PYMC Marketing Solution?](#how-does-our-solution-compare-to-the-pymc-marketing-solution)
-    - [Accompaniyng Colab Jupyter Notebook](#accompaniyng-colab-jupyter-notebook)
-    - [The Comparison Table for our parameters](#the-comparison-table-for-our-parameters)
-    - [Why our channel 2 impact parameters are correct too!](#why-our-channel-2-impact-parameters-are-correct-too)
-    - [How to fix this problem?](#how-to-fix-this-problem)
-- [What's Next?](#whats-next)
+- [Why make your own solution, if a solution already exists?](#why-make-your-own-solution-if-a-solution-already-exists)
+- [What Model Aspects Do We Create?](#what-model-aspects-do-we-create)
+  - [Model Parts for the Media Channel Impact](#model-parts-for-the-media-channel-impact)
+  - [Model Parts for Modeling the Rest of the World](#model-parts-for-modeling-the-rest-of-the-world)
+- [How to Implement the Four Major Model Aspects](#how-to-implement-the-four-major-model-aspects)
+  - [Create the Adstock with Convolution](#create-the-adstock-with-convolution)
+  - [Saturate with a Simple Logarithmic Formula](#saturate-with-a-simple-logarithmic-formula)
+  - [Build Seasonality with Fourier Decomposition](#build-seasonality-with-fourier-decomposition)
+  - [Events and Trend as Weighted Control Variables](#events-and-trend-as-weighted-control-variables)
+- [Let's Plug Everything Together: The Final Model](#lets-plug-everything-together-the-final-model)
+- [How Does Our Solution Compare to the PYMC Marketing Solution?](#how-does-our-solution-compare-to-the-pymc-marketing-solution)
+  - [The Comparison Table for Our Parameters](#comparing-our-model-with-the-pymc-model)
+  - [Why Our Channel 2 Parameters are Correct too](#why-our-channel-2-parameters-are-correct-too)
+  - [How to Fix This Problem?](#how-to-fix-this-problem)
+- [Final Summary: Insights and Implications](#final-summary-insights-and-implications)
 - [Resources](#resources)
 
-# Why make it yourself if there is a Solution?
+
+# Why make your own solution, if a solution already exists?
 
 While the PYMC Marketing Solution is a robust boilerplate tool, there are three key advantages to developing our own custom mixed marketing model (MMM) components:
 
@@ -65,9 +71,13 @@ We aim to replicate all facets of the Delayed Saturated Mixed Marketing Model (M
 - **Formula**: `channel_effectiveness * saturation(adstock(marketing_cost))`
   - **Channel Effectiveness**: This measures the return on investment for each marketing dollar spent. It's a crucial metric that aids in comparing the effectiveness of different channels.
   - **Saturation**: This concept asks how much investment a channel can absorb before it becomes ineffective. For example, purchasing all advertisement slots on a TV channel (say, 56 slots) doesn't mean you will achieve 56 times the impact of buying just one slot. The channel reaches a point of saturation where additional investment yields diminishing returns. 
-    - [Insert graph here]
   - **Adstock**: This term refers to the time it takes for your marketing spend to show its full effect. For instance, spending $10,000 on an influencer marketing video won't yield immediate results. The total advertising effect will accumulate over several days, based on when the video is most viewed. 
-    - [Insert graph here]
+
+*** 
+![Saturated Adstock Invest Picture](../../../public/project/invest-adstock-saturated.webp)
+*Initial Invest gets stretched out by adstock and reduced by saturation*
+*** 
+
 
 ## Model Parts for Modeling the rest of the world
 
@@ -75,8 +85,12 @@ We aim to replicate all facets of the Delayed Saturated Mixed Marketing Model (M
   - **Offset**: This represents baseline sales without any advertising.
   - **Trend**: This factor accounts for future sales projections based on underlying growth trends.
   - **Yearly Seasonality**: This aspect examines whether there are specific times of the year when your product performs better.
-    - [Insert graph here]
   - **Special Events**: These are unique events that significantly impact sales but are too irregular to model continuously, such as Black Friday.
+
+*** 
+  ![Offset Trend Seasonality Event Picture](../../../public/project/seasonlity-trend-event.webp)
+  *Weekly income over a year as a sum of offset + trend + seasonlity + one special event*
+***
    
 Each of these components will be integrated into our model. Some, like offset, are straightforward, while others, like adstock, are more complex and demand intricate coding.
 
@@ -129,7 +143,7 @@ In summary, this function applies convolution to ad spending and a geometric dis
 In our approach, we replicate the logistic saturation used in the MMM Example Notebook with a customized logistic function:
 python
 
-```
+```python
 logistic_saturation = lambda lam, x: (1 / (1 + np.exp(-lam * x)) - 0.5) * 2
 ```
 
@@ -196,10 +210,14 @@ In essence, these functions collectively allow the model to capture and adapt to
 
 In our model, events and trends are captured through weighted control variables. The weights are learned by the model, with each variable represented as a list corresponding to the time series length. 
 
-For events, the list contains zeros with a '1' marking the occurrence of an event. This binary approach efficiently flags significant occurrences. 
-
+For events, the list contains zeros with a '1' marking the occurrence of an event. This binary approach efficiently flags significant occurrences.
+```python
+event_weight * [0,0,0,1,0,0,0,0,0,0]
+```
 The trend is modeled as an incremental series from 1 to the number of time slots, reflecting the passage of time and capturing underlying growth patterns. 
-
+```python
+trend_weight * [0,1,2,3,4,5,6,7,8,9]
+```
 This method allows the model to dynamically adjust and understand the impact of time-specific events and ongoing trends on marketing outcomes.
 
 <add example>
@@ -209,7 +227,7 @@ This method allows the model to dynamically adjust and understand the impact of 
 Finally we can create our custom mixed media marketing model with custom components, that we can easily extend and reuse for whatever other use case we have in mind.
 
 
-```
+```python
 time_series_length = 179
 
 with pm.Model() as mixed_marketing_model:
@@ -285,41 +303,66 @@ In essence, this model is a comprehensive blend of statistical techniques and ma
 # How Does Our Solution Compare to the PYMC Marketing Solution?
 It's time to reap the fruits of our labor! Let's explore how our custom, homemade solution stacks up against the professional solution crafted by the PYMC Team. In summary, our solution is nearly as effective, albeit with a slightly slower execution time and a notable difference in the learned parameters for channel 2. Intriguingly, this variance was pre-existing in the official PYMC MMM Example Notebook, and our investigation has brought it to light.
 
-***
-## *Accompanying Colab Jupyter Notebook*
-*I have compiled all the essential code in a comprehensive notebook, covering everything from test data generation to the implementation of our components and models. This notebook facilitates a direct comparison between our solution and the PYMC example. Please note that the variable names in the notebook align with those in the PYMC MMM Example Notebook and not with the names we use here. This helps with comparing both solutions.*
-***
-
-
 ## Comparing Our Model with the PYMC Model
-We compared the PYMC Delayed Saturated MMM Model with our own custom model, using the same data for both. In probabilistic programming, it's hard to get exactly the same results every time because of random effects. But, our tests showed that our model learned the parameters almost as well as the PYMC model. The only big difference was in the parameters for channel 2.
+We compared the PYMC Delayed Saturated MMM Model with our own custom model, using the same data for both. In probabilistic programming, it's hard to get exactly the same results every time because of random effects. But, our tests shows that our model learned the parameters almost as well as the PYMC model. The only big difference are the parameters for channel 2.
 
-## Why Our Channel 2 Parameters Are Also Right
+***
+![Parameter Comparison Table between the PYMC MMM Model and our Model](../../../public/project/comparision-table.webp)
+*Most parameters are very much the same in size and variance. But there is a problem with the channel 2 parameters for channel effect and saturation*
+***
+
+## Why Our Channel 2 Parameters are Correct too
 We found something interesting in the PYMC MMM Example Notebook. There are two different sets of parameters that give almost the same results for channel 2. Here’s what they look like:
 
-Parameters from the Official Notebook for Channel 2:
+**Parameters from the Official Notebook for Channel 2:**
 - Channel Effect: 3 (before scaling)
 - Retention Rate: 0.2
 - Saturation Point: 3
 
-Parameters from Our Model:
+**Parameters from Our Model:**  
 - Channel Effect: 12.5 (before scaling) - That's a lot more!
 - Retention Rate: 0.2
 - Saturation Point: 0.5
 
-Even though these numbers are different, when we used them in the model, the results for channel 2 were almost the same.
+***
+![Alternative Parameters produce almost the same graph](../../../public/project/alternative-parameters.webp)
+*Even though these numbers are different, when we used them in the model, the results for channel 2 were almost the same, but for channel 2 parameters.* 
+***
 
-## How to Fix This
-To avoid wrong estimates about channel contributions, we should use tighter ranges for the saturation and channel impact in the model. 
+## How to Fix This Problem?     
+
+To avoid wrong estimates about channel contributions, we could:
+
+1. **Adjust Saturation Point for Channel 2**: We implement an offset of 1 to the saturation point. This adjustment is based on the nature of our custom logistic saturation function. In our model, logistic saturation is defined as `logistic_saturation_custom = lambda lam, x: (1 / (1 + np.e**-(lam * x)) - 0.5) * 2`. Given this formula, a saturation value less than 1 would counterintuitively lead to an increase rather than a decrease in the output, contradicting the typical behavior of saturation in marketing contexts. By ensuring the saturation point does not fall below 1, we maintain the expected behavior where increased investment leads to diminishing returns, aligning with standard marketing principles.
+
+```python
+    saturation_channel_2 = 1+pm.Gamma('saturation_channel_2', alpha=3, beta=1)
+```
+
+2. **Modify Channel Effect Distribution**: We switch from a LogNormal to a Normal distribution for modeling the channel effect of channel 2. The Normal distribution is less likely to produce extreme values, which helps in preventing the model from learning unrealistic parameter values, especially in scenarios where data might be noisy or sparse.
+
+```python
+    channel_2_effect =  pm.Normal('channel_2_effect', mu=0.25, sigma=0.3)
+```
 
 Also, doing a detailed check before starting the model can help spot these kinds of issues, especially when the data is a bit noisy.
 
-# What Comes Next?
-We've built a custom marketing model that works as well as professional ones and also found out some hidden issues in them. We've added new tools like distribution convolution and Fourier decomposition for seasonality, which are useful for more than just marketing models.
+# Final Summary: Insights and Implications
+As we conclude our exploration of building a custom mixed marketing model (MMM), it’s evident that our efforts have not only mirrored the efficacy of the PYMC Marketing Solution but also provided additional insights. Here are the major takeaways:
 
-Next, we might work on making our model parts better and more general so they can be used for different projects and shared with others. We could also add more features to our model, like finding switch points in seasonal trends.
+**Custom Component Creation**: The project successfully demonstrated the development of custom components for channel adstock, saturation, and seasonality effects in MMMs. This not only serves as a practical guide for similar endeavors but also enhances our understanding of MMM complexities.
 
-I hope this project story helps you with your own challenges in probabilistic modeling
+**Performance Comparison**: Our model, though slightly slower in execution, matches closely with the official PYMC Marketing Solution in terms of performance. This parity underscores the potential of custom-built solutions in achieving professional-grade results.
+
+**Parameter Variance Discovery**: A notable outcome is the identification of variance in the parameters for channel 2, a detail that was not immediately apparent in the PYMC model. This discovery emphasizes the importance of rigorous testing and validation in probabilistic modeling.
+
+**Model Flexibility and Adaptability**: The project highlights the flexibility of custom models in adapting to specific business needs and contexts. This adaptability is crucial in a rapidly changing marketing landscape, where bespoke solutions often yield the most effective results.
+
+**Technical Advancements**: Incorporating advanced techniques like distribution convolution and Fourier decomposition not only enriched our model but also provided tools that are transferable to other domains beyond marketing.
+
+**Future Directions**: Looking ahead, there is ample scope for refining our model, particularly in making its components more versatile and generalizable. Further research could explore dynamic trend switch points and expanding the model's capabilities to encompass a broader range of scenarios.
+
+In essence, this project story serves as a testament to the power of custom-built solutions in the field of marketing analytics. It underscores the value of a nuanced, component-based approach and paves the way for future innovations in Bayesian modeling and marketing strategy optimization.
 
 
 # Resources
